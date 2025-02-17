@@ -1,0 +1,32 @@
+type: object
+required:
+  - _id
+  - name
+  - phone
+  - email
+  - password
+properties:
+    _id:
+      definitions: "Shop's ID"
+      type: string
+      example: 67a9a018c3563e35a1c11ef3
+    name:
+      definitions: "full name"
+      type: string
+      example: dddhh aayyz
+    phone:
+      definitions: "Client's phone number"
+      type: string
+      example: +380000000002
+    email:
+      definitions: "Client's email"
+      type: string
+      example: "111@sa.co"
+    password:
+      definitions: "password"
+      type: string
+      example: qqqQQQ11
+        photo:
+      description: "Link to Client's photo"
+      type: string
+      format: binary

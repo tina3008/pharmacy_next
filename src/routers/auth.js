@@ -4,20 +4,15 @@ import {
   login,
   logout,
   refreshSessionController,
-  requestResetEmailController,
-  resetPasswordController,
-  getGoogleOAuthUrlController,
-  loginWithGoogleController,
+  getInfoUserController,
 } from '../controllers/auth.js';
 import { ctrlWrapper } from '../middlewares/ctrlWrapper.js';
 import {
   validUserSchema,
   loginSchema,
-  requestResetEmailSchema,
-  resetPasswordSchema,
-  loginWithGoogleOAuthSchema,
 } from '../validation/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const router = Router();
 // const jsonParser = json();
@@ -30,23 +25,10 @@ router.post('/logout', ctrlWrapper(logout));
 
 router.post('/refresh', ctrlWrapper(refreshSessionController));
 
-router.post(
-  '/send-reset-email',
-  validateBody(requestResetEmailSchema),
-  ctrlWrapper(requestResetEmailController),
-);
 
-router.post(
-  '/reset-pwd',
-  validateBody(resetPasswordSchema),
-  ctrlWrapper(resetPasswordController),
-);
+router.get('/user-info',  authenticate,  ctrlWrapper(getInfoUserController));
 
-router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
-
-router.post(
-  '/confirm-oauth',
-  validateBody(loginWithGoogleOAuthSchema),
-  ctrlWrapper(loginWithGoogleController),
-);
 export default router;
+
+
+

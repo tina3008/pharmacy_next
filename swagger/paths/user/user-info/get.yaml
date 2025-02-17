@@ -1,0 +1,30 @@
+tags:
+  - User
+summary: User info
+operationId: userInfo
+description: User info
+security:
+  - bearerAuth: []
+responses:
+  "200":
+    description: Successful response with user information
+    content:
+      application/json:
+        schema:
+          type: object
+        properties:
+            _id:
+             type: string
+              example: "67a9a018c3563e35a1c11ef3"
+            name:
+             type: string
+             example: "John Doe"
+            phone:
+              type: string
+              example: "+11045621"
+            email:
+              type: string
+              example: "111@sa.co"
+
+  '401':
+    $ref: ..\..\..\components\responses\401.yaml

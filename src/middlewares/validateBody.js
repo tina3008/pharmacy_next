@@ -7,8 +7,8 @@ export function validateBody(schema) {
 
       next();
     } catch (error) {
-      console.log({ message: error.message });
-      console.log({ details: error.details });
+      // console.log({ message: error.message });
+      // console.log({ details: error.details });
 
       next(
         createHttpError(

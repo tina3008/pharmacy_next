@@ -19,22 +19,26 @@
   ],
   "tags": [
     {
-      "name": "Contacts",
-      "description": "Operation with contacts"
+      "name": "User",
+      "description": "Auth operations"
     },
     {
-      "name": "Auth",
-      "description": "Auth operations"
+      "name": "Shop",
+      "description": "Operation with Shop"
+    },
+    {
+      "name": "Order",
+      "description": "Operation with Order"
     }
   ],
   "paths": {
-    "/contacts": {
+    "/order": {
       "get": {
         "tags": [
-          "Contacts"
+          "Order"
         ],
-        "summary": "Get all contacts",
-        "operationId": "getContactsController",
+        "summary": "Get all order",
+        "operationId": "getOrderController",
         "description": "Get list of users with this endpoint",
         "security": [
           {

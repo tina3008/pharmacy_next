@@ -1,0 +1,31 @@
+type: object
+required:
+  - _id
+  - name
+  - phone
+  - email
+  - password
+
+properties:
+    _id:
+      definitions: "Contact's ID"
+      type: string
+      example: 6692528c222b4be7b4b17ebd
+    name:
+      definitions: "full name"
+      type: string
+      example: dddhh aayyz
+    phone:
+      definitions: "Shop's phone number"
+      type: string
+      example: +380000000002
+    email:
+      definitions: "User's email"
+      type: string
+      example: "111@sa.co"
+    password:
+      definitions: "User's password"
+      type: string
+      example: "qqqQQQ1"
+
+

@@ -1,10 +1,16 @@
 import { Router } from 'express';
-import contactsRouter from './contacts.js';
+import shopRouter from './shop.js';
 import authRouter from './auth.js';
-
+// import statisticRouter from './statistic.js';
+import clientRouter from './client.js';
+import orderRouter from './order.js';
 const router = Router();
 
-router.use('/contacts', contactsRouter);
-router.use('/auth', authRouter);
+router.use('/shop', shopRouter);
+router.use('/user', authRouter);
+router.use('/client', clientRouter);
+router.use('/order', orderRouter);
+// router.use('/statistics', statisticRouter);
+
 
 export default router;

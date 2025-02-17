@@ -1,0 +1,60 @@
+type: object
+required:
+  - _id
+  - name
+  - price
+  - category
+  - medicine
+  - supplier
+  - brend
+  - rating
+  - userId
+  - shopId
+
+properties:
+    _id:
+      definitions: "Product's ID"
+      type: string
+      example: 67aa817202c59a4a92629569
+    name:
+      definitions: "full product's name"
+      type: string
+      example: aspirin
+    price:
+      definitions: "price"
+      type: number
+      example: 90
+    category:
+      definitions: "category name"
+      type: string
+      example: vitamin
+    medicine:
+      definitions: "info, direction for use"
+      type: string
+      example: some text
+    supplier:
+      definitions: "full name"
+      type: string
+      example: dddhh aayyz
+    brend:
+      definitions: "brend name"
+      type: string
+      example: farm
+    rating:
+      definitions: "rating name"
+      type: number
+      example: 2
+
+    userId:
+      definitions: "Autorth's  ID"
+      type: string
+      example: 67a676e8396df9b485290ab8
+    shopId:
+      definitions: "Shop's  ID"
+      type: string
+      example: 67aa5d900409923fda18e459
+    photo:
+      description: "Link to product's photo"
+      type: string
+      format: string
+      example: https://i.ibb.co/bLKP624/5-15-1000x1000-min.jpg

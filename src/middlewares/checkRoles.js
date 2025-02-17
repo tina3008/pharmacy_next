@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 
-import ContactsCollection from '../db/models/contact.js';
+import StoreCollection from '../db/models/store.js';
 import { ROLES } from '../constants/index.js';
 
 export const checkRoles =
@@ -15,18 +15,18 @@ export const checkRoles =
     const { role } = user;
 
     if (roles.includes(ROLES.AUTOR) && role === ROLES.AUTOR) {
-      const { contactId } = req.params;
-      if (!contactId) {
+      const { storeId } = req.params;
+      if (!storeId) {
         next(createHttpError(404));
         return;
       }
 
-      const contact = await ContactsCollection.findOne({
-        _id: contactId,
+      const contact = await StoreCollection.findOne({
+        _id: storeId,
         userId: user._id,
       });
 
-      if (contact) {
+      if (store) {
         next();
         return;
       }

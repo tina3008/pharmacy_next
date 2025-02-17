@@ -1,0 +1,38 @@
+type: object
+required:
+  - _id
+  - clientName
+  - review
+  - clientId
+  - productId
+
+properties:
+    _id:
+      definitions: "Shop's ID"
+      type: string
+      example: 6692528c222b4be7b4b17ebd
+    clientName:
+      definitions: "full name"
+      type: string
+      example: dddhh aayyz
+    review:
+      definitions: "Client's maind about product"
+      type: string
+      example: I recently had a virtual appointment with my doctor through this medical platform, and I was pleasantly surprised by how seamless the experience was.
+    productPhoto:
+      description: "Link to Shop's photo"
+      type: string
+      format: binary
+    rating:
+      definitions: "Prouct's drating"
+      type: number
+      example: 5
+    clientId:
+      definitions: "Client's ID"
+      type: string
+      example: 67a9a018c3563e35a1c11ef3
+    productId:
+      definitions: "product's ID"
+      type: string
+      example: 67aa817202c59a4a92629569
+

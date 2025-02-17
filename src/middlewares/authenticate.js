@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 import { SessionsCollections } from '../db/models/Session.js';
-import { UsersCollection } from '../db/models/User.js';
+import { UsersCollection } from '../db/models/users.js';
 
 export const authenticate = async (req, res, next) => {
   const authHeader = req.get('Authorization');
@@ -9,7 +9,6 @@ export const authenticate = async (req, res, next) => {
     next(createHttpError(401, 'Please provide Authorization header'));
     return;
   }
-
   const bearer = authHeader.split(' ')[0];
   const token = authHeader.split(' ')[1];
 
@@ -31,7 +30,6 @@ export const authenticate = async (req, res, next) => {
   if (isAccessTokenExpired) {
     next(createHttpError(401, 'Access token expired'));
   }
-
   const user = await UsersCollection.findById(session.userId);
 
   if (!user) {
@@ -40,6 +38,5 @@ export const authenticate = async (req, res, next) => {
   }
 
   req.user = user;
-
   next();
 };

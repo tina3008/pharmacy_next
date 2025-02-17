@@ -1,43 +1,34 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: Contactts
+  title: Shops
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description:
-   This is contact app
+   This is shop app
 tags:
-  - name: Contacts
-    description: Operation with contacts
-  - name: Auth
-    description: Auth operations
+  - name: User
+    description: User operations
+  - name: Shop
+    description: Operation with shops
+  - name: Order
+    description: User operations
+
 servers:
   - url: http://localhost:3000
   - url: https://nodejs-hw-mongodb-4-3qmt.onrender.com/
 paths:
 
-  /contacts:
+  /user:
     get:
-      $ref: ..\swagger\paths\contacts\get.yaml
+      $ref: ..\swagger\paths\user\user-info\post.yaml
+  /auth/logout:
     post:
-      $ref: ..\swagger\paths\contacts\post.yaml
-  /contacts/{id}:
-    get:
-      $ref: ..\swagger\paths\contacts\{id}\get.yaml
-    delete:
-      $ref: ..\swagger\paths\contacts\{id}\delete.yaml
-    patch:
-      $ref: ..\swagger\paths\contacts\{id}\patch.yaml
-  /auth/confirm-auth:
-    post:
-      $ref: ..\swagger\paths\auth\confirm-oauth\post.yaml
-  /auth/logaut:
-    post:
-      $ref: ..\swagger\paths\auth\logout\post.yaml
+      $ref: ..\swagger\paths\user\logout\post.yaml
   /auth/login:
     post:
-      $ref: ..\swagger\paths\auth\login\post.yaml
+      $ref: ..\swagger\paths\user\login\post.yaml
   /auth/refresh:
     post:
       $ref: ..\swagger\paths\auth\refresh\post.yaml
@@ -46,13 +37,41 @@ paths:
       $ref: ..\swagger\paths\auth\register\post.yaml
   /auth/reset-pwd:
     post:
-      $ref: ..\swagger\paths\auth\reset-pwd\post.yaml
+      $ref: ..\swagger\paths\user\reset-pwd\post.yaml
   /auth/send-reset-email:
     post:
-      $ref: ..\swagger\paths\auth\send-reset-email\post.yaml
+      $ref: ..\swagger\paths\user\send-reset-email\post.yaml
   /auth/get-oauth-url:
     get:
       $ref: ..\swagger\paths\auth\get-oauth-url\get.yaml
+
+    /shop:
+    get:
+      $ref: ..\swagger\paths\shop\get.yaml
+  /shop/create:
+    post:
+      $ref: ..\swagger\paths\shop\post.yaml
+  /shop/{id}:
+    get:
+      $ref: ..\swagger\paths\shop\{id}\get.yaml
+    delete:
+      $ref: ..\swagger\paths\shop\{id}\delete.yaml
+  /shop/{id}/update:
+    put:
+      $ref: ..\swagger\paths\shop\{id}\put.yaml
+
+  /order:
+    get:
+      $ref:
+  /order/add:
+    post:
+      $ref:
+  /order/{id}/delete:
+    delete:
+      $ref:
+  /order/{id}/put:
+    put:
+      $ref:
 components:
   securitySchemes:
     bearerAuth:

@@ -1,0 +1,94 @@
+tags:
+  - Shops
+summary: Create shop
+operationId: createShop
+description: 'Create a shop with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - owner
+          - phone
+          - email
+          - street
+          - sity
+          - zip
+          - addInfo
+          - delivery
+          - rating
+          - photo
+        properties:
+          name:
+            definitions: "full name"
+            type: string
+            example: dddhh aayyz
+          owner:
+            definitions: "full owner name"
+            type: string
+            example: dddhh aayyz
+
+          phone:
+            definitions: "shop's phone number"
+            type: string
+            example: +380000000002
+
+          email:
+            definitions: "shop's email"
+            type: string
+            example: "qwee3@example.com"
+
+          street:
+            definitions: "Shop's street"
+            type: string
+            example: main3
+          sity:
+            definitions: "shop's city"
+            type: string
+            example: "Kyiv"
+          zip:
+            definitions: "shop's zip"
+            type: string
+            example: "02002"
+          addInfo:
+            definitions: "shop's additional info"
+            type: string
+            example: "some about the shop"
+          delivery:
+            definitions: "Do yu have delivery?"
+            example: "no"
+            enum: ['yes', 'no']
+            default: 'no'
+
+          photo:
+            description: "The file to upload"
+            type: string
+            format: binary
+            example: "https://res.cloudinary.com/dzcis7rfr/image/upload/v1723708555"
+responses:
+  '201':
+    description: Creates a shop
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a shop!
+            data:
+              type: object
+              $ref: ..\..\/components/schemas/shop.yaml
+  '404':
+    $ref: '../../components/responses/404.yaml'

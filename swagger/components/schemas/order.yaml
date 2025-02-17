@@ -1,0 +1,96 @@
+type: object
+required:
+  - _id
+  - productName
+  - clientName
+  - clientPhone
+  - clientEmail
+  - productPrice
+  - amount
+  - shopName
+  - shopPhone
+  - shopEmail
+  - shopStreet
+  - shopSity
+  - shopId
+  - clientId
+  - productId
+
+properties:
+    _id:
+      definitions: "Product's ID"
+      type: string
+      example: 67aa817202c59a4a92629569
+    productName:
+      definitions: "full product's name"
+      type: string
+      example: aspirin
+    clientName:
+      definitions: "full product's name"
+      type: string
+      example: aspirin
+    clientPhone:
+      definitions: "Shop's phone number"
+      type: string
+      example: +380000000002
+    clientEmail:
+      definitions: "Client's email"
+      type: string
+      example: "qwee3@example.com"
+    productPrice:
+      definitions: "product's price"
+      type: number
+      example: 90
+    amount:
+      definitions: "product quantity"
+      type: number
+      example: 90
+    productPhoto:
+      definitions: "Product's Photo"
+      type: String,
+      example: https://i.imgur.com/7l1lgAc.png
+    shopName:
+      definitions: "Shop name"
+      type: string
+      example: dddhh aayyz
+    shopPhone:
+      definitions: "Shop's phone number"
+      type: string
+      example: +380000000002
+    shopEmail:
+      definitions: "Shop's email"
+      type: string
+      example: "qwee3@example.com"
+    shopStreet:
+      definitions: "shop street"
+      type: string
+      example: Main, 3
+    shopSity:
+      definitions: "shop city"
+      type: string
+      example: Kyiv
+
+    status:
+      definitions: "Status of the order"
+      type: string
+      example: no
+      enum: ['Completed',
+        'Confirmed',
+        'Pending',
+        'Cancelled',
+        'Processing',
+        'Shipped',
+        'Delivered']
+      default: 'Processing'
+    shopId:
+      definitions: "Shop's ID"
+      type: string
+      example: 67a7acc7eab0986670cccd1b
+    clientId:
+      definitions: "Client's  ID"
+      type: string
+      example: 65dfb600243f7f001c5e36b3
+    productId:
+      definitions: "Product's  ID"
+      type: string
+      example: 67aa817202c59a4a92629569
