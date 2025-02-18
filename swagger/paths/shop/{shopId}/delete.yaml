@@ -1,20 +1,20 @@
 tags:
-  - Contacts
-summary: Delete contact
-operationId: deleteContact
+  - Shop
+summary: Delete shop
+operationId: deleteShopController
 description: 'Delete a contact from DB'
 security:
   - bearerAuth: []
 parameters:
   - in: path
-    name: id
+    name: shopId
     required: true
     schema:
       type: string
-      example: 6692528c222b4be7b4b17ebd
+      example: 67aa5d900409923fda18e459
 responses:
   '204':
     description: 'Delete contact by id'
   '404':
-    $ref: ..\..\..\components\responses\404.yaml
+    $ref: ../../../components/responses/404.yaml
 

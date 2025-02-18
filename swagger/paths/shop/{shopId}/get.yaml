@@ -1,20 +1,20 @@
 tags:
-  - Contacts
-summary: Get scontact by id
-operationId: getContactIDController
-description: 'Get contact by id'
+  - Shop
+summary: Get shop by id
+operationId: getShopIDController
+description: 'Get shop by id'
 security:
   - bearerAuth: []
 parameters:
   - in: path
-    name: _id
+    name: shopId
     required: true
     schema:
       type: string
-      example: 6692528c222b4be7b4b17ebd
+      example: 67aa5d900409923fda18e459
 responses:
   '200':
-    description: 'Get contact by id'
+    description: 'Get shop by id'
     content:
       application/json:
         schema:
@@ -29,10 +29,10 @@ responses:
               example: 200
             message:
               type: string
-              example: Successfully found contact with id 6692528c222b4be7b4b17ebd!
+              example: Successfully found shop with id 67aa5d900409923fda18e459!
             data:
               type: object
-              $ref: ..\..\..\components\schemas\contacts.yaml
+              $ref: ..\..\..\components\schemas\shop.yaml
   '404':
     $ref: ..\..\..\components\responses\404.yaml
 

@@ -1,7 +1,7 @@
 tags:
   - User
 summary: Login user
-operationId: loginUser
+operationId: login
 description: 'Login a user '
 security:
   - bearerAuth: []
@@ -15,13 +15,11 @@ requestBody:
           - password
         properties:
           email:
-            definitions: "user's email"
             type: string
-            example: dasd@fsdf.com
+            example: "111@sa.co"
           password:
-            definitions: "user's password"
             type: string
-            example: "bbfdbhfds"
+            example: qqqQQQ1
 responses:
   '200':
     description: Login a User
@@ -36,12 +34,12 @@ responses:
           properties:
             status:
               type: integer
-              example: 200
+              example: 201
             message:
               type: string
-              example: Successfully logged in a user!
+              example: Successfully logined a User!
             data:
               type: object
-              $ref: ..\..\..\components\schemas\session.yaml
+              $ref: ..\..\..\components\schemas\user.yaml
   '401':
     $ref: ..\..\..\components\responses\401.yaml

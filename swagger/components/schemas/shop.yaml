@@ -11,57 +11,43 @@ required:
   - userId
 properties:
     _id:
-      definitions: "Shop's ID"
       type: string
       example: 6692528c222b4be7b4b17ebd
     name:
-      definitions: "full name"
       type: string
       example: dddhh aayyz
     owner:
-      definitions: "full name"
       type: string
       example: dddhh aayyz
     phone:
-      definitions: "Shop's phone number"
       type: string
       example: +380000000002
     email:
-      definitions: "Shop's email"
       type: string
       example: "qwee3@example.com"
     street:
-      definitions: "full name"
       type: string
       example: dddhh aayyz
     sity:
-      definitions: "full name"
       type: string
       example: dddhh aayyz
-
     zip:
-      definitions: "full name"
       type: string
       example: dddhh aayyz
     addInfo:
-      definitions: "full name"
       type: string
       example: dddhh aayyz
     delivery:
-      definitions: "Do you have delivery"
       type: string
       example: no
       enum: ['yes', 'no']
       default: 'no'
     rating:
-      definitions: "Shop's rating"
       type: number
       example: 5
     userId:
-      definitions: "Autorth's contact ID"
       type: string
       example: 6692528c222b4be7b4b17ebd
-
     photo:
       description: "Link to Shop's photo"
       type: string

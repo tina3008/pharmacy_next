@@ -1,0 +1,25 @@
+tags:
+  - Product
+summary: Delete Product
+operationId: deleteProductController
+description: 'Delete a Product from DB'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 67aa5d900409923fda18e459
+  - in: path
+    name: productId
+    required: true
+    schema:
+      type: string
+      example: 67aa5d900409923fda18e459
+responses:
+  '204':
+    description: 'Delete contact by id'
+  '404':
+    $ref: ../../../../../../components/responses/404.yaml

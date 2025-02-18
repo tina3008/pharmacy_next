@@ -20,58 +20,88 @@ servers:
   - url: https://nodejs-hw-mongodb-4-3qmt.onrender.com/
 paths:
 
-  /user:
+  /user/user-info:
     get:
-      $ref: ..\swagger\paths\user\user-info\post.yaml
+      $ref: ../swagger/paths/user/user-info/get.yaml
   /auth/logout:
     post:
-      $ref: ..\swagger\paths\user\logout\post.yaml
+      $ref: ../swagger/paths/user/logout/post.yaml
   /auth/login:
     post:
-      $ref: ..\swagger\paths\user\login\post.yaml
+      $ref: ../swagger/paths/user/login/post.yaml
   /auth/refresh:
     post:
-      $ref: ..\swagger\paths\auth\refresh\post.yaml
+      $ref: ../swagger/paths/auth/refresh/post.yaml
   /auth/register:
     post:
-      $ref: ..\swagger\paths\auth\register\post.yaml
-  /auth/reset-pwd:
-    post:
-      $ref: ..\swagger\paths\user\reset-pwd\post.yaml
-  /auth/send-reset-email:
-    post:
-      $ref: ..\swagger\paths\user\send-reset-email\post.yaml
-  /auth/get-oauth-url:
-    get:
-      $ref: ..\swagger\paths\auth\get-oauth-url\get.yaml
+      $ref: ../swagger/paths/auth/register/post.yaml
 
-    /shop:
+
+  /shop:
     get:
-      $ref: ..\swagger\paths\shop\get.yaml
+      $ref: ../swagger/paths/shop/get.yaml
   /shop/create:
     post:
-      $ref: ..\swagger\paths\shop\post.yaml
-  /shop/{id}:
+      $ref: ../swagger/paths/shop/post.yaml
+  /shop/{shopId}:
     get:
-      $ref: ..\swagger\paths\shop\{id}\get.yaml
+      $ref: ../swagger/paths/shop/{shopId}/get.yaml
     delete:
-      $ref: ..\swagger\paths\shop\{id}\delete.yaml
-  /shop/{id}/update:
+      $ref: ../swagger/paths/shop/{shopId}/delete.yaml
+  /shop/{shopId}/update:
     put:
-      $ref: ..\swagger\paths\shop\{id}\put.yaml
+      $ref: ../swagger/paths/shop/{shopId}/update/put.yaml
 
+  /shop/{shopId}/statistics:
+    get:
+      $ref: ../swagger/paths/shop/{shopId}/statistics/get.yaml
+  /shop/{shopId}/statistics/{clientId}/goods:
+    get:
+      $ref: ../swagger/paths/shop/{shopId}/statistics/{clientId}/goods/get.yaml
+
+  /shop/{shopId}/product:
+    get:
+      $ref: ../swagger/paths/shop/{shopId}/product/get.yaml
+  /shop/{shopId}/product/add:
+    post:
+      $ref: ../swagger/paths/shop/{shopId}/product/add/post.yaml
+  /shop/{shopId}/product/{productId}:
+    get:
+      $ref: ../swagger/paths/shop/{shopId}/product/{productId}/get.yaml
+  /shop/{shopId}/product/{productId}/delete:
+    delete:
+      $ref: ../swagger/paths/shop/{shopId}/product/{productId}/delete/delete.yaml
+  /shop/{shopId}/product/{productId}/edit:
+    put:
+      $ref: ../swagger/paths/shop/{shopId}/product/{productId}/edit/put.yaml
+  /shop/{shopId}/product/{productId}/review:
+     get:
+      $ref: ../swagger/paths/shop/{shopId}/product/{productId}/review/get.yaml
+  /shop/{shopId}/product/{productId}/review/add:
+    post:
+      $ref: ../swagger/paths/shop/{shopId}/product/{productId}/review/add/post.yaml
+
+  /shop/{shopId}/product/{productId}/review/{reviewId}:
+    delete:
+      $ref: ../swagger/paths/shop/{shopId}/product/{productId}/review/{reviewId}/delete/delete.yaml
+
+    /shop/{shopId}/product/{productId}/review/{reviewId}/edit:
+    put:
+      $ref: ../swagger/paths/shop/{shopId}/product/{productId}/review/{reviewId}/edit/put.yaml
   /order:
     get:
-      $ref:
+      $ref: ../swagger/paths/order/get.yaml
   /order/add:
     post:
-      $ref:
-  /order/{id}/delete:
+      $ref: ../swagger/paths/order/add/post.yaml
+  /order/{orderId}/delete:
     delete:
-      $ref:
-  /order/{id}/put:
+      $ref:../swagger/paths/order/{orderId}/delete/delete.yaml
+  /order/{orderId}/put:
     put:
-      $ref:
+      $ref:../swagger/paths/order/{orderId}/edit/put.yaml
+
+
 components:
   securitySchemes:
     bearerAuth:

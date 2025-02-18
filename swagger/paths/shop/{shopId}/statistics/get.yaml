@@ -1,0 +1,54 @@
+tags:
+  - Statistics
+summary: Get Statistics for Shops
+operationId: getStatisticsController
+description: 'Get Statistics of shops with this endpoint'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 67aa5d900409923fda18e459
+
+responses:
+  '200':
+    description: Successfully found Statistics!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully found Statistics!
+            data:
+              type: object
+              required:
+                - status
+                - message
+                - data
+              properties:
+                status:
+                  type: integer
+                  example: 200
+                message:
+                  type: string
+                  example: Successfully found shop's statistic with id 67aa5d900409923fda18e459!
+                data:
+                  type: array
+                  items:
+                    $ref: ../../../../components/schemas/shop.yaml
+
+  '404':
+    $ref: ../../../../components/responses/404.yaml
+

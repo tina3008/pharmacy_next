@@ -16,6 +16,7 @@ async function register(req, res) {
     data: {
       name: registeredUser.name,
       email: registeredUser.email,
+      phone: registeredUser.phone,
       id: registeredUser._id,
       createdAt: registeredUser.createdAt,
       updatedAt: registeredUser.updatedAt,

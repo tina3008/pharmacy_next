@@ -1,7 +1,7 @@
 tags:
   - Auth
 summary: Logout user
-operationId: logoutUser
+operationId: logout
 description: 'Logout a user and close session'
 security:
   - bearerAuth: []

@@ -1,0 +1,83 @@
+tags:
+  - Product
+summary: Create Product
+operationId: createProductController
+description: 'Create a Product'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 67aa5d900409923fda18e459
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - price
+          - category
+          - medicine
+          - supplier
+          - brend
+          - userId
+          - shopId
+        properties:
+          name:
+            type: string
+            example: "dddhh aayyz"
+          price:
+            type: number
+            example: 100
+          category:
+            type: string
+            example: "analgetic"
+          medicine:
+            type: string
+            example: "some text"
+          supplier:
+            type: string
+            example: farmacy company
+          brend:
+            type: string
+            example: farmacy company
+          rating:
+            type: number
+            example: 5
+          photo:
+            type: string
+            default: "https://i.imgur.com/1As0akH.png1"
+          shopId:
+            type: string
+            example: 6692528c222b4be7b4b17ebd
+          userId:
+            type: string
+            example: 6692528c222b4be7b4b17ebd
+responses:
+  '200':
+    description: Create product
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully changed a contact!
+            data:
+              type: object
+              $ref: ../../../../../components/schemas/products.yaml
+  '404':
+    $ref: ../../../../../components/responses/404.yaml
+

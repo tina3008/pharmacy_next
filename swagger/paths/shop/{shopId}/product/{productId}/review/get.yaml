@@ -1,11 +1,23 @@
 tags:
-  - Shop
-summary: Get all Shops
-operationId: getShopsController
-description: 'Get list of shops with this endpoint'
+  - Review
+summary: Get all Review
+operationId: getAllReviews
+description: 'Get list of Reviews with this endpoint'
 security:
   - bearerAuth: []
 parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 67aa5d900409923fda18e459
+  - in: path
+    name: productId
+    required: true
+    schema:
+      type: string
+      example: 67aa5d900409923fda18e459
   - in: query
     name: page
     schema:
@@ -21,7 +33,7 @@ parameters:
     schema:
       type: string
       example: 'sortOrder'
-    description: "All shop's fields. Default value - _id"
+    description: "All rewiew's fields. Default value "
   - in: query
     name: sortOrder
     schema:
@@ -31,7 +43,7 @@ parameters:
 
 responses:
   '200':
-    description: Successfully found Shops!
+    description: Successfully found Products!
     content:
       application/json:
         schema:
@@ -46,7 +58,7 @@ responses:
               example: 200
             message:
               type: string
-              example: Successfully found Shops!
+              example: Successfully found Products!
             data:
               type: object
               required:
@@ -61,7 +73,7 @@ responses:
                 data:
                   type: array
                   items:
-                    $ref: ../../components/schemas/shop.yaml
+                    $ref: ../../../../../../components/schemas/review.yaml
                 page:
                   type: number
                   example: 2
@@ -81,5 +93,5 @@ responses:
                   type: boolean
                   example: true
   '404':
-    $ref: '../../components/responses/404.yaml'
+    $ref: ../../../../../../components/responses/404.yaml
 

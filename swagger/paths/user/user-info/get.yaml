@@ -1,7 +1,7 @@
 tags:
   - User
 summary: User info
-operationId: userInfo
+operationId: getInfoUserController
 description: User info
 security:
   - bearerAuth: []
@@ -12,19 +12,20 @@ responses:
       application/json:
         schema:
           type: object
-        properties:
-            _id:
-             type: string
-              example: "67a9a018c3563e35a1c11ef3"
-            name:
-             type: string
-             example: "John Doe"
-            phone:
+          required:
+           - status
+           - message
+           - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
               type: string
-              example: "+11045621"
-            email:
-              type: string
-              example: "111@sa.co"
+              example: Successfully found user with id 67aa5d900409923fda18e459!
+            data:
+              type: object
+              $ref: ..\..\..\components\schemas\user.yaml
 
   '401':
     $ref: ..\..\..\components\responses\401.yaml

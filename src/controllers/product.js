@@ -72,7 +72,6 @@ export const createProductController = async (req, res) => {
   console.log('productFields', productFields);
 
   const product = await createProduct(productFields);
-  // await updateStatistics();
   res.status(201).json({
     status: 201,
     message: 'Successfully created a product!',

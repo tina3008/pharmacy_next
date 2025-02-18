@@ -1,10 +1,17 @@
 tags:
-  - Shops
+  - Shop
 summary: Create shop
-operationId: createShop
-description: 'Create a shop with payload'
+operationId: createShopController
+description: 'Create a shop by ID'
 security:
   - bearerAuth: []
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 67aa5d900409923fda18e459
 requestBody:
   content:
     multipart/form-data:
@@ -18,60 +25,56 @@ requestBody:
           - street
           - sity
           - zip
-          - addInfo
-          - delivery
-          - rating
-          - photo
+          - userId
         properties:
           name:
             definitions: "full name"
             type: string
             example: dddhh aayyz
           owner:
-            definitions: "full owner name"
+            definitions: "full name"
             type: string
             example: dddhh aayyz
-
           phone:
-            definitions: "shop's phone number"
+            definitions: "Shop's phone number"
             type: string
             example: +380000000002
-
           email:
-            definitions: "shop's email"
+            definitions: "Shop's email"
             type: string
             example: "qwee3@example.com"
-
           street:
-            definitions: "Shop's street"
+            definitions: "full name"
             type: string
-            example: main3
+            example: dddhh aayyz
           sity:
-            definitions: "shop's city"
+            definitions: "full name"
             type: string
-            example: "Kyiv"
+            example: dddhh aayyz
           zip:
-            definitions: "shop's zip"
+            definitions: "full name"
             type: string
-            example: "02002"
+            example: dddhh aayyz
           addInfo:
-            definitions: "shop's additional info"
+            definitions: "full name"
             type: string
-            example: "some about the shop"
+            example: dddhh aayyz
           delivery:
-            definitions: "Do yu have delivery?"
-            example: "no"
+            definitions: "Do you have delivery"
+            type: string
             enum: ['yes', 'no']
             default: 'no'
-
-          photo:
-            description: "The file to upload"
+          rating:
+            definitions: "Shop's rating"
+            type: number
+            example: 5
+          userId:
+            definitions: "Autorth's contact ID"
             type: string
-            format: binary
-            example: "https://res.cloudinary.com/dzcis7rfr/image/upload/v1723708555"
+            example: 6692528c222b4be7b4b17ebd
 responses:
-  '201':
-    description: Creates a shop
+  '200':
+    description: Change a contact
     content:
       application/json:
         schema:
@@ -83,12 +86,13 @@ responses:
           properties:
             status:
               type: integer
-              example: 201
+              example: 200
             message:
               type: string
-              example: Successfully created a shop!
+              example: Successfully changed a contact!
             data:
               type: object
-              $ref: ..\..\/components/schemas/shop.yaml
+              $ref: ../../../../components/schemas/shop.yaml
   '404':
-    $ref: '../../components/responses/404.yaml'
+    $ref: ../../../../components/responses/404.yaml
+
