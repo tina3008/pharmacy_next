@@ -18,6 +18,17 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
+    spent: {
+      type: String,
+      default: '0',
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    register_date: {
+      type: Date,
+    },
     photo: { type: String },
     reviews: { type: Object, default: {} },
   },
@@ -28,4 +39,3 @@ const clientSchema = new Schema(
 );
 
 export const ClientsCollection = model('clients', clientSchema);
-

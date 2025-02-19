@@ -4,6 +4,7 @@ required:
   - name
   - phone
   - email
+  - address
   - password
 properties:
     _id:
@@ -26,7 +27,16 @@ properties:
       definitions: "password"
       type: string
       example: qqqQQQ11
-        photo:
+    photo:
       description: "Link to Client's photo"
       type: string
       format: binary
+    spent:
+      type: string
+      format: binary
+    address:
+      type: string
+      format: binary
+    register_date:
+      type: date
+      format: "mm/dd/yyyy"

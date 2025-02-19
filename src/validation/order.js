@@ -29,6 +29,7 @@ export const schemaOrderPost = Joi.object({
     'Shipped',
     'Delivered',
   ),
+  clientAddress: Joi.string().min(1).max(50),
 });
 
 export const schemaOrdertPatch = Joi.object({
@@ -58,5 +59,6 @@ export const schemaOrdertPatch = Joi.object({
     'Shipped',
     'Delivered',
   ),
+  clientAddress: Joi.string().min(1).max(50),
 });
 

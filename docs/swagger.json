@@ -1449,12 +1449,12 @@
           "medicine",
           "supplier",
           "brend",
+          "stock",
           "shopId",
           "userId"
         ],
         "properties": {
           "_id": {
-            "definitions": "Product's ID",
             "type": "string",
             "example": "67aa0bcb6113412ef92d109f"
           },
@@ -1490,6 +1490,10 @@
           },
           "rating": {
             "definitions": "product's rating",
+            "type": "number",
+            "example": 5
+          },
+          "stock":{
             "type": "number",
             "example": 5
           },

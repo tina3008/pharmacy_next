@@ -40,7 +40,10 @@ const productsSchema = new Schema(
       ref: 'shop',
       required: true,
     },
-
+    stock: {
+        type: Number,
+      default: 0,
+},
     photo: {
       type: String,
     },

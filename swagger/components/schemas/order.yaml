@@ -15,7 +15,7 @@ required:
   - shopId
   - clientId
   - productId
-
+  - clientAddress
 properties:
     _id:
       definitions: "Product's ID"
@@ -69,7 +69,9 @@ properties:
       definitions: "shop city"
       type: string
       example: Kyiv
-
+    clientAddress:
+      type: string
+      example: Kyiv
     status:
       definitions: "Status of the order"
       type: string

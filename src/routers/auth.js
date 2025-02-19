@@ -17,6 +17,7 @@ import { authenticate } from '../middlewares/authenticate.js';
 const router = Router();
 // const jsonParser = json();
 
+
 router.post('/register', validateBody(validUserSchema), ctrlWrapper(register));
 
 router.post('/login', validateBody(loginSchema), ctrlWrapper(login));

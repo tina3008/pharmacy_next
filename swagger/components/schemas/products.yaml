@@ -8,6 +8,7 @@ required:
   - supplier
   - brend
   - rating
+  - stock
   - userId
   - shopId
 
@@ -36,7 +37,9 @@ properties:
     rating:
       type: number
       example: 2
-
+    stock:
+      type: number
+      example: 10
     userId:
       type: string
       example: 67a676e8396df9b485290ab8
