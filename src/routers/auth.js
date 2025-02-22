@@ -14,22 +14,25 @@ import {
 import { validateBody } from '../middlewares/validateBody.js';
 import { authenticate } from '../middlewares/authenticate.js';
 
-const router = Router();
-// const jsonParser = json();
+const authRouter = Router();
 
 
-router.post('/register', validateBody(validUserSchema), ctrlWrapper(register));
+authRouter.post(
+  '/register',
+  validateBody(validUserSchema),
+  ctrlWrapper(register),
+);
 
-router.post('/login', validateBody(loginSchema), ctrlWrapper(login));
+authRouter.post('/login', validateBody(loginSchema), ctrlWrapper(login));
 
-router.post('/logout', ctrlWrapper(logout));
+authRouter.post('/logout', ctrlWrapper(logout));
 
-router.post('/refresh', ctrlWrapper(refreshSessionController));
+authRouter.post('/refresh', ctrlWrapper(refreshSessionController));
 
 
-router.get('/user-info',  authenticate,  ctrlWrapper(getInfoUserController));
+authRouter.get('/user-info', authenticate, ctrlWrapper(getInfoUserController));
 
-export default router;
+export default authRouter;
 
 
 

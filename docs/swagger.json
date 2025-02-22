@@ -521,7 +521,7 @@
         }
       }
     },
-    "/user/user-info'": {
+    "/user/user-info": {
       "get": {
         "tags": ["User"],
         "summary": "Logout user",

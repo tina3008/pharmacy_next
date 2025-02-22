@@ -25,7 +25,7 @@ responses:
               example: Successfully found user with id 67aa5d900409923fda18e459!
             data:
               type: object
-              $ref: ..\..\..\components\schemas\user.yaml
+              $ref: ../../../components/schemas/user.yaml
 
   '401':
-    $ref: ..\..\..\components\responses\401.yaml
+    $ref: ../../../components/responses/401.yaml
