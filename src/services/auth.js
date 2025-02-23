@@ -1,15 +1,6 @@
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import { randomBytes } from 'crypto';
-import jwt from 'jsonwebtoken';
-
-import handlebars from 'handlebars';
-import path from 'node:path';
-import fs from 'node:fs/promises';
-
-import { SMTP, TEMPLATES_DIR } from '../constants/index.js';
-import { env } from '../utils/env.js';
-import { sendEmail } from '../utils/sendMail.js';
 
 import { UsersCollection } from '../db/models/users.js';
 import { SessionsCollections } from '../db/models/Session.js';
