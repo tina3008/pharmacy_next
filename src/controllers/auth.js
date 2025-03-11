@@ -26,7 +26,7 @@ async function register(req, res) {
 
 async function login(req, res) {
   const session = await loginUser(req.body);
-
+  res.header('Access-Control-Allow-Credentials', 'true');
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
     expires: new Date(Date.now() + ONE_DAY),
@@ -67,21 +67,60 @@ const setupSession = (res, session) => {
   });
 };
 
+// export const refreshSessionController = async (req, res) => {
+//   const session = await refreshSession({
+//     sessionId: req.cookies.sessionId,
+//     refreshToken: req.cookies.refreshToken,
+//   });
+
+//   setupSession(res, session);
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   res.json({
+//     status: 200,
+//     message: 'Successfully refreshed a session!',
+//     data: {
+//       accessToken: session.accessToken,
+//     },
+//   });
+// };
+
+const refreshRequests = new Map();
+
 export const refreshSessionController = async (req, res) => {
-  const session = await refreshSession({
-    sessionId: req.cookies.sessionId,
-    refreshToken: req.cookies.refreshToken,
-  });
+  const sessionId = req.cookies.sessionId;
 
-  setupSession(res, session);
+  if (!sessionId) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
-  res.json({
-    status: 200,
-    message: 'Successfully refreshed a session!',
-    data: {
-      accessToken: session.accessToken,
-    },
-  });
+  const now = Date.now();
+  const lastRequestTime = refreshRequests.get(sessionId) || 0;
+
+  if (now - lastRequestTime < 5000) {
+    return res.status(429).json({ message: "Too many refresh requests, please wait." });
+  }
+
+  refreshRequests.set(sessionId, now);
+
+  try {
+    const session = await refreshSession({
+      sessionId: req.cookies.sessionId,
+      refreshToken: req.cookies.refreshToken,
+    });
+
+    setupSession(res, session);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.json({
+      status: 200,
+      message: 'Successfully refreshed a session!',
+      data: {
+        accessToken: session.accessToken,
+      },
+    });
+  } catch (error) {
+    console.error('refresh session error:', error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
 };
 
 export const getInfoUserController = async (req, res) => {
