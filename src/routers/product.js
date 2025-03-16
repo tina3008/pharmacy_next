@@ -25,8 +25,8 @@ productRouter.use(authenticate);
 productRouter.get('/', ctrlWrapper(getProductsController));
 
 productRouter.get(
-  '/:c',
-   isValidProductID,
+  '/:productId',
+  isValidProductID,
   ctrlWrapper(getProductIDController),
 );
 

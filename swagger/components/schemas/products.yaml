@@ -3,12 +3,6 @@ required:
   - _id
   - name
   - price
-  - category
-  - medicine
-  - supplier
-  - brend
-  - rating
-  - stock
   - userId
   - shopId
 

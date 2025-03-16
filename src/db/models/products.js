@@ -12,19 +12,19 @@ const productsSchema = new Schema(
     },
     category: {
       type: String,
-      required: true,
+
     },
     medicine: {
       type: String,
-      required: true,
+
     },
     supplier: {
       type: String,
-      required: true,
+
     },
     brend: {
       type: String,
-      required: true,
+      
     },
     rating: {
       type: Number,
