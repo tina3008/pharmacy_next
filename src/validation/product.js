@@ -9,6 +9,7 @@ export const schemaProductPost = Joi.object({
   brend: Joi.string().min(1).max(100),
   rating: Joi.number().min(0).max(10),
   stock: Joi.number().min(0),
+  photo: Joi.string().uri().allow('').optional(),
 });
 
 export const schemaProductPatch = Joi.object({
@@ -20,5 +21,6 @@ export const schemaProductPatch = Joi.object({
   brend: Joi.string().min(1).max(100),
   rating: Joi.number().min(0).max(10),
   stock: Joi.number().min(0),
+  photo: Joi.string().uri().allow('').optional(),
 });
 
