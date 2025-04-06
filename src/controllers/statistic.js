@@ -4,11 +4,14 @@ import {
   getRecentClientsAndOrders,
   getShopStatistics,
   getDetailClientsAndOrders,
+  getIOMoney,
 } from '../services/statistic.js';
 import createHttpError from 'http-errors';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 
 export const getStatisticsController = async (req, res) => {
   const { shopId } = req.params;
+  const { page, perPage } = parsePaginationParams(req.query);
 
   if (!shopId) {
     return res.status(400).json({ message: 'shopId is missing' });
@@ -19,6 +22,11 @@ export const getStatisticsController = async (req, res) => {
   const dailyIncomeList = await getDailyIncomeList(shopId);
   const dailyExpensesList = await getDailyExpensesList(shopId);
 
+  const dailyIOMoney = await getIOMoney({
+    page,
+    perPage,
+  });
+
   if (!recentClients) {
     throw createHttpError(404, `clients not found`);
   }
@@ -28,7 +36,9 @@ export const getStatisticsController = async (req, res) => {
   if (!dailyExpensesList) {
     throw createHttpError(404, `expenses not found`);
   }
-
+  if (!dailyIOMoney) {
+    throw createHttpError(404, `money statistic not found`);
+  }
   const totalIncome = dailyIncomeList.reduce(
     (sum, order) => sum + order.total,
     0,
@@ -48,21 +58,23 @@ export const getStatisticsController = async (req, res) => {
     totalIncome,
     totalExpenses,
     profit: totalIncome - totalExpenses,
+    dailyIOMoney,
   });
 };
 
 export const getStatisticsIdController = async (req, res) => {
   const { clientId } = req.params;
 
-  const statClientOrders = await getDetailClientsAndOrders(clientId);
+  const { orders, totalSumm } = await getDetailClientsAndOrders(clientId);
 
-  if (!statClientOrders || statClientOrders.length === 0) {
-    throw createHttpError(404, `Statistic not found, ${clientId}`);
+  if (!orders || orders.length === 0) {
+    throw createHttpError(404, `Statistic not found for clientId ${clientId}`);
   }
 
   res.status(200).json({
     status: 200,
     message: `Successfully found statistics for id ${clientId}!`,
-    data: statClientOrders,
+    orders,
+    totalSumm,
   });
 };

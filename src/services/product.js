@@ -7,17 +7,13 @@ const getAllProducts = async ({
   perPage = 10,
   sortOrder = SORT_ORDER.ASC,
   sortBy = '_id',
-  filter,
   userId,
   shopId,
 }) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  const productsQuery = ProductsCollection.find();
-  if (filter.category) {
-    productsQuery.where('category').equals(filter.category);
-  }
+   const productsQuery = ProductsCollection.find();
   productsQuery.where('shopId').equals(shopId);
   productsQuery.where('userId').equals(userId);
 
@@ -36,6 +32,44 @@ const getAllProducts = async ({
     data: products,
     ...paginationData,
   };
+};
+
+const getFechProducts = async ({
+  page = 1,
+  perPage = 10,
+  sortOrder = SORT_ORDER.ASC,
+  sortBy = '_id',
+  filter,
+}) => {
+  const limit = perPage;
+  const skip = (page - 1) * perPage;
+
+  const productsQuery = ProductsCollection.find();
+  if (filter.category) {
+    productsQuery.where('category').equals(filter.category);
+  }
+  if (filter.name) {
+    productsQuery.where('name').equals(filter.name);
+  }
+  const [productsCount, products] = await Promise.all([
+    ProductsCollection.find().merge(productsQuery).countDocuments(),
+    productsQuery
+      .skip(skip)
+      .limit(limit)
+      .sort({ [sortBy]: sortOrder })
+      .exec(),
+  ]);
+
+  const paginationData = calculatePaginationData(productsCount, perPage, page);
+
+  return {
+    data: products,
+    ...paginationData,
+  };
+};
+
+const getCategoryProduct =  () => {
+  return ProductsCollection.distinct('category');
 };
 
 function getProductById(productId, userId, shopId) {
@@ -78,4 +112,6 @@ export {
   createProduct,
   deleteProduct,
   patchProduct,
+  getFechProducts,
+  getCategoryProduct,
 };

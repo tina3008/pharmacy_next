@@ -4,22 +4,18 @@ import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 const getAllReviews = async ({
   page = 1,
   perPage = 3,
- productId,
-  clientId,
-
+  //  productId,
+  //   clientId,
 }) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
   const reviewsQuery = ReviewsCollection.find();
-    reviewsQuery.where('productId').equals(productId);
-    reviewsQuery.where('clientId').equals(clientId);
+  // reviewsQuery.where('productId').equals(productId);
+  // reviewsQuery.where('clientId').equals(clientId);
 
   const [reviewsCount, reviews] = await Promise.all([
     ReviewsCollection.find().merge(reviewsQuery).countDocuments(),
-    reviewsQuery
-      .skip(skip)
-      .limit(limit)
-      .exec(),
+    reviewsQuery.skip(skip).limit(limit).exec(),
   ]);
 
   const paginationData = calculatePaginationData(reviewsCount, perPage, page);

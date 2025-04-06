@@ -12,19 +12,18 @@ const productsSchema = new Schema(
     },
     category: {
       type: String,
-
     },
     medicine: {
       type: String,
 
     },
-    supplier: {
+    suppliers: {
       type: String,
 
     },
     brend: {
       type: String,
-      
+
     },
     rating: {
       type: Number,
@@ -41,8 +40,8 @@ const productsSchema = new Schema(
       required: true,
     },
     stock: {
-        type: Number,
-      default: 0,
+        type: String,
+      default: "0",
 },
     photo: {
       type: String,

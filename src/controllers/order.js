@@ -15,7 +15,6 @@ export const getOrderController = async (req, res) => {
   const products = await getAllOrders({
     page,
     perPage,
-    productId: req.query.productId,
     shopId: req.query.shopId,
     clientId: req.query.clientId,
   });
@@ -28,30 +27,31 @@ export const getOrderController = async (req, res) => {
 };
 
 export const createOrderController = async (req, res) => {
-  const { amount, clientId, productId, shopId } = req.body;
-  console.log(
-    'bodylog amount, clientId, productId, shopId,',
-    amount,
-    clientId,
-    productId,
-    shopId,
-  );
+  try {
+    const { clientId, shopId, clientOrders } = req.body;
 
-  const order = await createOrder(req.body);
+    console.log('Request body:', req.body);
 
-  console.log(
-    'amount, clientId, productId',
-    amount,
-    clientId,
-    productId,
-    shopId,
-  );
+    if (!clientOrders || !Array.isArray(clientOrders) || !clientOrders.length) {
+      return res.status(400).json({
+        status: 400,
+        message: 'clientOrders must be a non-empty array',
+      });
+    }
 
-  res.status(201).json({
-    status: 201,
-    message: 'Successfully created a order!',
-    data: order,
-  });
+    const order = await createOrder({ clientId, shopId, clientOrders });
+
+    res.status(201).json({
+      status: 201,
+      message: 'Successfully created an order!',
+      data: order,
+    });
+  } catch (error) {
+    res.status(error.status || 500).json({
+      status: error.status || 500,
+      message: error.message || 'Internal Server Error',
+    });
+  }
 };
 
 export const deleteOrderController = async (req, res) => {

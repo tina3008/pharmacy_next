@@ -14,8 +14,9 @@ import {
   createProductController,
   deleteProductController,
   changeProductController,
+
 } from '../controllers/product.js';
-import reviewRouter from './review.js';
+
 
 
 const productRouter = Router({ mergeParams: true });
@@ -49,6 +50,6 @@ productRouter.put(
   ctrlWrapper(changeProductController),
 );
 
-productRouter.use('/:productId/review', isValidProductID, reviewRouter);
+
 
 export default productRouter;

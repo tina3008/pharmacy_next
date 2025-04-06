@@ -13,8 +13,7 @@ export const getReviewController = async (req, res) => {
   const products = await getAllReviews({
     page,
     perPage,
-    productId: req.params.productId,
-    shopId: req.params.shopId,
+    // productId: req.params.productId,
   });
 
   res.json({
@@ -25,11 +24,10 @@ export const getReviewController = async (req, res) => {
 };
 
 export const createReviewerController = async (req, res) => {
-  const { shopId, productId, clientId } = req.params;
+  const {  productId, clientId } = req.params;
   const productFields = {
     ...req.body,
     userId: req.user._id,
-    shopId,
     productId,
     clientId,
   };

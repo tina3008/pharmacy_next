@@ -1,20 +1,14 @@
-import  { model, Schema } from 'mongoose';
 
-const OrdersSchema = new Schema(
+import { model, Schema } from 'mongoose';
+
+const ClientOrdersSchema = new Schema(
   {
+    productId: {
+      type: Schema.Types.ObjectId,
+      ref: 'products',
+      required: true,
+    },
     productName: {
-      type: String,
-      required: true,
-    },
-    clientName: {
-      type: String,
-      required: true,
-    },
-    clientPhone: {
-      type: String,
-      required: true,
-    },
-    clientEmail: {
       type: String,
       required: true,
     },
@@ -28,6 +22,40 @@ const OrdersSchema = new Schema(
     },
     productPhoto: {
       type: String,
+    },
+    productCategory: {
+      type: String,
+    },
+    totalAmount: {
+      type: Number,
+      required: true,
+      default: function () {
+        return this.productPrice * this.amount;
+      },
+    },
+  },
+  {
+    _id: false,
+  },
+);
+
+const OrdersSchema = new Schema(
+  {
+    clientName: {
+      type: String,
+      required: true,
+    },
+    clientPhone: {
+      type: String,
+      required: true,
+    },
+    clientEmail: {
+      type: String,
+      required: true,
+    },
+    clientAddress: {
+      type: String,
+      required: true,
     },
     shopName: {
       type: String,
@@ -49,10 +77,6 @@ const OrdersSchema = new Schema(
       type: String,
       required: true,
     },
-    clientAddress:
-      {type: String,
-      required: true,}
-    ,
     status: {
       type: String,
       enum: [
@@ -70,19 +94,22 @@ const OrdersSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'shops',
       required: true,
-
     },
     clientId: {
       type: Schema.Types.ObjectId,
       ref: 'clients',
       required: true,
-
     },
-    productId: {
-      type: Schema.Types.ObjectId,
-      ref: 'products',
+    clientOrders: [ClientOrdersSchema],
+    total: {
+      type: Number,
       required: true,
-
+      default: function () {
+        return this.clientOrders.reduce(
+          (sum, order) => sum + order.totalAmount,
+          0,
+        );
+      },
     },
   },
   {
