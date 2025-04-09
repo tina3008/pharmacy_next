@@ -10,16 +10,34 @@ import { ONE_DAY } from '../constants/index.js';
 async function register(req, res) {
   const registeredUser = await registerUser(req.body);
 
+  const session = await loginUser({
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.cookie('refreshToken', session.refreshToken, {
+    httpOnly: true,
+    expires: new Date(Date.now() + ONE_DAY),
+  });
+  res.cookie('sessionId', session._id, {
+    httpOnly: true,
+    expires: new Date(Date.now() + ONE_DAY),
+  });
+
   res.status(201).json({
     status: 201,
-    message: 'Successfully registered a user!',
+    message: 'Successfully registered and logged in!',
     data: {
-      name: registeredUser.name,
-      email: registeredUser.email,
-      phone: registeredUser.phone,
-      id: registeredUser._id,
-      createdAt: registeredUser.createdAt,
-      updatedAt: registeredUser.updatedAt,
+      accessToken: session.accessToken,
+      user: {
+        name: registeredUser.name,
+        email: registeredUser.email,
+        phone: registeredUser.phone,
+        id: registeredUser._id,
+        createdAt: registeredUser.createdAt,
+        updatedAt: registeredUser.updatedAt,
+      },
     },
   });
 }
@@ -90,14 +108,16 @@ export const refreshSessionController = async (req, res) => {
   const sessionId = req.cookies.sessionId;
 
   if (!sessionId) {
-    return res.status(401).json({ message: "Unauthorized" });
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 
   const now = Date.now();
   const lastRequestTime = refreshRequests.get(sessionId) || 0;
 
   if (now - lastRequestTime < 5000) {
-    return res.status(429).json({ message: "Too many refresh requests, please wait." });
+    return res
+      .status(429)
+      .json({ message: 'Too many refresh requests, please wait.' });
   }
 
   refreshRequests.set(sessionId, now);
@@ -119,7 +139,7 @@ export const refreshSessionController = async (req, res) => {
     });
   } catch (error) {
     console.error('refresh session error:', error);
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 

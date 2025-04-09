@@ -13,9 +13,11 @@ export const registerUser = async (payload) => {
     throw createHttpError(409, 'Email already in use');
   }
 
-  payload.password = await bcrypt.hash(payload.password, 10);
+  const hashedPassword = await bcrypt.hash(payload.password, 10);
 
-  return UsersCollection.create(payload);
+  const userData = { ...payload, password: hashedPassword };
+
+  return UsersCollection.create(userData);
 };
 
 export const loginUser = async (payload) => {
