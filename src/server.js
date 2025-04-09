@@ -18,7 +18,6 @@ export const setupServer = () => {
   app.use('/uploads', express.static(UPLOAD_DIR));
 
   app.use(express.json({ type: ['application/json'] }));
-  // app.use(cors());
   app.use(
     cors({
       origin: ['http://localhost:5173', 'https://pharmacy-entn.vercel.app'],
