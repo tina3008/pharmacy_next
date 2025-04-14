@@ -14,7 +14,7 @@ export const getShopStatistics = async (shopId) => {
       shopId,
     });
     const clientCount = uniqueClients.length;
-    const uniqueSuppliers = await ProductsCollection.distinct('supplier', {
+    const uniqueSuppliers = await ProductsCollection.distinct('suppliers', {
       shopId,
     });
     const supplierCount = uniqueSuppliers.length;

@@ -20,7 +20,8 @@ export const setupServer = () => {
   app.use(express.json({ type: ['application/json'] }));
   app.use(
     cors({
-      origin: ['http://localhost:5173', 'https://pharmacy-entn.vercel.app'],
+      // origin: ['http://localhost:5173', 'https://pharmacy-entn.vercel.app'],
+      origin: ['https://pharmacy-entn.vercel.app'],
       credentials: true,
     }),
   );
