@@ -62,28 +62,34 @@ async function register(req, res) {
 
 async function login(req, res) {
   const session = await loginUser(req.body);
+
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', 'https://pharmacy-entn.vercel.app');
-  res.clearCookie('refreshToken');
-  res.clearCookie('sessionId');
 
   res.clearCookie('refreshToken', {
+    path: '/',
     httpOnly: true,
     secure: true,
     sameSite: 'None',
   });
+
   res.clearCookie('sessionId', {
+    path: '/',
     httpOnly: true,
     secure: true,
     sameSite: 'None',
   });
+
   res.cookie('refreshToken', session.refreshToken, {
+    path: '/',
     httpOnly: true,
     secure: true,
     sameSite: 'None',
     expires: new Date(Date.now() + ONE_DAY),
   });
+
   res.cookie('sessionId', session._id, {
+    path: '/',
     httpOnly: true,
     secure: true,
     sameSite: 'None',
