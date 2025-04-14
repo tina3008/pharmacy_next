@@ -55,10 +55,14 @@ async function login(req, res) {
   res.header('Access-Control-Allow-Credentials', 'true');
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
+    secure: true,
+    sameSite: 'None',
     expires: new Date(Date.now() + ONE_DAY),
   });
   res.cookie('sessionId', session._id, {
     httpOnly: true,
+    secure: true,
+    sameSite: 'None',
     expires: new Date(Date.now() + ONE_DAY),
   });
 
@@ -92,23 +96,6 @@ const setupSession = (res, session) => {
     expires: new Date(Date.now() + ONE_DAY),
   });
 };
-
-// export const refreshSessionController = async (req, res) => {
-//   const session = await refreshSession({
-//     sessionId: req.cookies.sessionId,
-//     refreshToken: req.cookies.refreshToken,
-//   });
-
-//   setupSession(res, session);
-//   res.header('Access-Control-Allow-Credentials', 'true');
-//   res.json({
-//     status: 200,
-//     message: 'Successfully refreshed a session!',
-//     data: {
-//       accessToken: session.accessToken,
-//     },
-//   });
-// };
 
 const refreshRequests = new Map();
 
