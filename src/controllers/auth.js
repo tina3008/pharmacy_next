@@ -16,10 +16,9 @@ async function register(req, res) {
   });
 
   res.header('Access-Control-Allow-Credentials', 'true');
-  // res.cookie('refreshToken', session.refreshToken, {
-  //   httpOnly: true,
-  //   expires: new Date(Date.now() + ONE_DAY),
-  // });
+  res.clearCookie('refreshToken');
+  res.clearCookie('sessionId');
+
   res.clearCookie('refreshToken', {
     httpOnly: true,
     secure: true,
@@ -63,6 +62,9 @@ async function register(req, res) {
 async function login(req, res) {
   const session = await loginUser(req.body);
   res.header('Access-Control-Allow-Credentials', 'true');
+  res.clearCookie('refreshToken');
+  res.clearCookie('sessionId');
+
   res.clearCookie('refreshToken', {
     httpOnly: true,
     secure: true,
