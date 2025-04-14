@@ -16,6 +16,7 @@ async function register(req, res) {
   });
 
   res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', 'https://pharmacy-entn.vercel.app');
   res.clearCookie('refreshToken');
   res.clearCookie('sessionId');
 
@@ -62,6 +63,7 @@ async function register(req, res) {
 async function login(req, res) {
   const session = await loginUser(req.body);
   res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', 'https://pharmacy-entn.vercel.app');
   res.clearCookie('refreshToken');
   res.clearCookie('sessionId');
 
