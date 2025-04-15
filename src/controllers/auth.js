@@ -17,19 +17,21 @@ async function register(req, res) {
 
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', 'https://pharmacy-entn.vercel.app');
-  res.clearCookie('refreshToken');
-  res.clearCookie('sessionId');
+ res.clearCookie('refreshToken', {
+   path: '/',
+   httpOnly: true,
+   secure: true,
+   sameSite: 'None',
+   domain: '.pharmacy-backend-szji.onrender.com',
+ });
 
-  res.clearCookie('refreshToken', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'None',
-  });
-  res.clearCookie('sessionId', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'None',
-  });
+ res.clearCookie('sessionId', {
+   path: '/',
+   httpOnly: true,
+   secure: true,
+   sameSite: 'None',
+   domain: '.pharmacy-backend-szji.onrender.com',
+ });
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
     secure: true,
@@ -66,25 +68,28 @@ async function login(req, res) {
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', 'https://pharmacy-entn.vercel.app');
 
-  res.clearCookie('refreshToken', {
-    path: '/',
-    httpOnly: true,
-    secure: true,
-    sameSite: 'None',
-  });
+ res.clearCookie('refreshToken', {
+   path: '/',
+   httpOnly: true,
+   secure: true,
+   sameSite: 'None',
+   domain: '.pharmacy-backend-szji.onrender.com',
+ });
 
-  res.clearCookie('sessionId', {
-    path: '/',
-    httpOnly: true,
-    secure: true,
-    sameSite: 'None',
-  });
+ res.clearCookie('sessionId', {
+   path: '/',
+   httpOnly: true,
+   secure: true,
+   sameSite: 'None',
+   domain: '.pharmacy-backend-szji.onrender.com',
+ });
 
   res.cookie('refreshToken', session.refreshToken, {
     path: '/',
     httpOnly: true,
     secure: true,
     sameSite: 'None',
+    domain: '.pharmacy-backend-szji.onrender.com',
     expires: new Date(Date.now() + ONE_DAY),
   });
 
@@ -93,6 +98,7 @@ async function login(req, res) {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
+    domain: '.pharmacy-backend-szji.onrender.com',
     expires: new Date(Date.now() + ONE_DAY),
   });
 
